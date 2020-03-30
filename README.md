@@ -1,5 +1,10 @@
 # Gyaku Jinton
 
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/gyakujinton)](https://pypi.python.org/pypi/gyakujinton/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/mamerisawesome/gyakujinton/graphs/commit-activity)
+[![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)](https://github.com/Naereen/badges)
+
 OpenCV wrapper to handle shapes and images.
 
 ## Pre-requisites
