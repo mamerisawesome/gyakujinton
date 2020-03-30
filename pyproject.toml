@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "gyakujinton"
-version = "0.2.2"
+version = "0.2.3"
 description = ""
 repository = "https://github.com/mamerisawesome/gyakujinton"
 readme = "README.md"
-license = "BSD-3-Clause"
+license = "MIT"
 authors = ["Almer Mendoza <atmalmer23@gmail.com>"]
 
 [tool.poetry.scripts]
