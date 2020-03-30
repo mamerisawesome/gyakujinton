@@ -1,0 +1,12 @@
+# for python compiled modules
+.pytest_cache
+py_modules
+*.pyc
+*.egg-info
+dist
+
+# for unit testing and coverage reports
+htmlcov
+.hypothesis
+
+.vscode
