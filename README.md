@@ -82,7 +82,7 @@ gyakujinton draw_on_image sample/samantha-gades-unsplash.jpg --points 100,100 10
 
 When thinking of a name for the app, the first thing that came into mind is Ohnoki's [Particle Style (or Dust Release) Atomic Dismantling Jutsu](https://naruto.fandom.com/wiki/Dust_Release:_Detachment_of_the_Primitive_World_Technique) from [Naruto](https://www.viz.com/naruto) which is a technique that has a sphere in the center contained by a geometric object. In the series, dust release is called `Jinton` which was chosen due to how amazed I am on the shapes happening.
 
-Now, with the points above, the technique is used to dismantle atoms to dust. `Gyaku` (or reverse as taught to me by [Google Translate](https://translate.google.com/?gs_lcp=CgZwc3ktYWIQAzIICCEQFhAdEB46BQgAEIMBOgIIADoECAAQCjoFCAAQxAI6CAgAEBYQChAeOgYIABAWEB46BAghEApQ8ghYqDFgxjJoAnAAeACAAZ4BiAG7HpIBBDAuMzGYAQCgAQGqAQdnd3Mtd2l6&uact=5&um=1&ie=UTF-8&hl=en&client=tw-ob#auto/ja/reverse)) was added to signifying making of shapes and images rather than dismantling them.
+Now, with the points above, the technique is used to dismantle atoms to dust. `Gyaku` (or reverse as taught to me by [Google Translate](https://translate.google.com/?gs_lcp=CgZwc3ktYWIQAzIICCEQFhAdEB46BQgAEIMBOgIIADoECAAQCjoFCAAQxAI6CAgAEBYQChAeOgYIABAWEB46BAghEApQ8ghYqDFgxjJoAnAAeACAAZ4BiAG7HpIBBDAuMzGYAQCgAQGqAQdnd3Mtd2l6&uact=5&um=1&ie=UTF-8&hl=en&client=tw-ob#auto/ja/reverse)) was added to signify making of shapes and images rather than dismantling them.
 
 Hence, the app name `Gyaku Jinton`.
 
