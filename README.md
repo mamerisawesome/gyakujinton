@@ -47,6 +47,28 @@ We can also define an output path by adding the argument `-o` or `--output_path`
 gyakujinton draw_on_image /path/to/file.filetype --points 100,100 200,100 200,200 100,200 --output_path /path/to/output-file.filetype
 ```
 
+## Sample
+
+To test out the application, we'll be using an [image by Samantha Gades](https://unsplash.com/photos/BlIhVfXbi9s) taken from Unsplash. We have this beautiful and simple original image.
+
+![Original Image](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/samantha-gades-unsplash.jpg)
+
+We can draw a polygon near the clock by doing the following in the command-line:
+
+```bash
+gyakujinton draw_on_image sample/samantha-gades-unsplash.jpg --points 150,150 150,250 250,250 250,150
+```
+
+![Modified Image](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/output.jpg)
+
+Again, we are not restricted with the polygon that we want to create. It all depends on where we put the points and how they are ordered when lines are to be drawn.
+
+```bash
+gyakujinton draw_on_image sample/samantha-gades-unsplash.jpg --points 100,100 100,150 180,200 250,150 250,100 180,50 -o output-2.jpg
+```
+
+![Modified Image 2](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/output-2.jpg)
+
 ## Name Inspiration
 
 ![Ohnoki's Dust Release](https://vignette.wikia.nocookie.net/naruto/images/2/20/Dust_Release.png/revision/latest/scale-to-width-down/1000?cb=20150123214535)
