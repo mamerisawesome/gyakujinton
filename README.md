@@ -52,6 +52,18 @@ We can also define an output path by adding the argument `-o` or `--output_path`
 gyakujinton draw_on_image /path/to/file.filetype --points 100,100 200,100 200,200 100,200 --output_path /path/to/output-file.filetype
 ```
 
+### Skewing the image (CLI)
+
+A proof-of-concept is created within the application to distort the skew the input image.
+
+```bash
+gyakujinton distory /path/to/file.filetype --patch 10,10 10,400 400,400 400,10
+```
+
+Similar to previous functions, an output path can be set to write the image into a file.
+
+> Note: The window that will be created will not consider alpha values. As such, to see transparency it is recommended to save the file in PNG format.
+
 ## Sample
 
 To test out the application, we'll be using an [image by Samantha Gades](https://unsplash.com/photos/BlIhVfXbi9s) taken from Unsplash. We have this beautiful and simple original image.

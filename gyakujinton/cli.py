@@ -5,6 +5,7 @@ import sys
 def cli():
     commands = {
         "draw_on_image": shape_on_image,
+        "distort": skew_image,
     }
 
     options = {
@@ -62,6 +63,50 @@ def shape_on_image(parent_parser, arguments):
         output_path=args.output_path,
         points=[
             [int(c) for c in point.split(",")] for point in args.points[-1]
+        ]
+    )
+
+    return 0
+
+
+def skew_image(parent_parser, arguments):
+    from .main import skew_image
+
+    parser = argparse.ArgumentParser(
+        prog="distort",
+        parents=[parent_parser]
+    )
+
+    parser.add_argument(
+        "image_path",
+        help="file path of image to be drawn on"
+    )
+
+    parser.add_argument(
+        "-o",
+        "--output_path",
+        help="output path of image with the modifications"
+    )
+
+    parser.add_argument(
+        "-p",
+        "--patch",
+        nargs="+",
+        action="append",
+        required=True,
+        help=(
+            "area to focus on the image; x,y points\n"
+            "should be a four sided polygon\n"
+            "example: --patch 10,10 10,400 400,400 400,10"
+        )
+    )
+
+    args = parser.parse_args(arguments)
+    skew_image(
+        image_path=args.image_path,
+        output_path=args.output_path,
+        patch=[
+            [int(c) for c in point.split(",")] for point in args.patch[-1]
         ]
     )
 

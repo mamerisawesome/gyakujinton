@@ -13,8 +13,9 @@ class Window():
         self.name = name
 
         if not image_path:
-            dims = (width, height, 3)
+            dims = (height, width, 3)
             self.window = np.zeros(dims, dtype="uint8")
+            self.window.fill(0)
         else:
             self.window = cv2.imread(image_path)
 
@@ -27,10 +28,21 @@ class Window():
             thickness=3
         )
 
-    def show(self):
-        cv2.imshow(self.name, self.canvas)
+    def show(self, window_size=None):
+        try:
+            cv2.imshow(self.name, self.canvas)
+        except AttributeError:
+            cv2.imshow(self.name, self.window)
+
+        if window_size:
+            cv2.namedWindow(self.name, cv2.WINDOW_NORMAL)
+            cv2.resizeWindow(self.name, *window_size)
+
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
     def save(self, output_path):
-        cv2.imwrite(output_path, self.canvas)
+        try:
+            cv2.imwrite(output_path, self.canvas)
+        except AttributeError:
+            cv2.imwrite(output_path, self.window)
