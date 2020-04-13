@@ -93,7 +93,6 @@ def skew_image(parent_parser, arguments):
         "--patch",
         nargs="+",
         action="append",
-        required=True,
         help=(
             "area to focus on the image; x,y points\n"
             "should be a four sided polygon\n"
@@ -102,12 +101,16 @@ def skew_image(parent_parser, arguments):
     )
 
     args = parser.parse_args(arguments)
+    patch = None
+    if args.patch:
+        patch = [
+            [int(c) for c in point.split(",")] for point in args.patch[-1]
+        ]
+
     skew_image(
         image_path=args.image_path,
         output_path=args.output_path,
-        patch=[
-            [int(c) for c in point.split(",")] for point in args.patch[-1]
-        ]
+        patch=patch
     )
 
     return 0

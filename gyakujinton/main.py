@@ -99,44 +99,50 @@ def skew_image(image_path, output_path=None, patch=None):
     if patch is None:
         patch = [
             (0, 0),
-            (0, width),
-            (width, height),
             (height, 0),
+            (width, height),
+            (0, width),
         ]
+
+    all_x = [point[0] for point in patch]
+    all_y = [point[1] for point in patch]
 
     skew_coords = []
     for point in patch:
-        perc_rand = random.randint(10, 40)
-        skew_coords += [(
-            round(point[0] + (point[0] * (perc_rand / 100))),
-            round(point[1] + (point[1] * (perc_rand / 100))),
-        )]
+        perc_rand = random.uniform(0.1, 0.4)
+        new_x = 0
+        new_y = 0
+
+        if point[0] == min(all_x) and point[1] == min(all_y):
+            new_x = round(point[0] + ((width / 2) * perc_rand))
+            new_y = round(point[1] + ((height / 2) * perc_rand))
+
+        elif point[0] > min(all_x) and point[1] > min(all_y):
+            new_x = round(point[0] - ((width / 2) * perc_rand))
+            new_y = round(point[1] - ((height / 2) * perc_rand))
+
+        elif point[0] > min(all_x) and point[1] < max(all_y):
+            new_x = round(point[0] - ((width / 2) * perc_rand))
+            new_y = round(point[1] + ((height / 2) * perc_rand))
+
+        elif point[0] < max(all_x) and point[1] > min(all_y):
+            new_x = round(point[0] + ((width / 2) * perc_rand))
+            new_y = round(point[1] - ((height / 2) * perc_rand))
+
+        skew_coords += [(new_x, new_y)]
 
     # convert to valid input for cv2 homography
     patch = np.array(patch)
     skew_coords = np.array(skew_coords)
 
-    skewed_width = skew_coords[1][1]
-    if skew_coords[2][0] > skew_coords[1][1]:
-        skewed_width = skew_coords[2][0]
-
-    skewed_height = skew_coords[2][1]
-    if skew_coords[3][0] > skew_coords[2][1]:
-        skewed_height = skew_coords[3][0]
-
     h, status = cv2.findHomography(patch, skew_coords)
     image.window = cv2.warpPerspective(
-        image.window[patch[0][1]:patch[2][1], patch[0][0]:patch[2][0]],
-        h,
-        (skewed_width, skewed_height)
+        src=image.window,
+        M=h,
+        dsize=(width, height)
     )
 
-    image.window = cv2.resize(
-        image.window,
-        (round(width / 1.125), round(height / 1.125))
-    )
-
-    padding = 50
+    padding = 0
     screen = Window(width=width + padding, height=height + padding)
     screen.window[
         padding:image.window.shape[0] + padding,
