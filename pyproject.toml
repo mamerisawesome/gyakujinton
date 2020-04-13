@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gyakujinton"
-version = "0.3.0"
+version = "0.3.1"
 description = ""
 repository = "https://github.com/mamerisawesome/gyakujinton"
 readme = "README.md"

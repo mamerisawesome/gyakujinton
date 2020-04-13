@@ -34,6 +34,25 @@ draw_on_image(
 )
 ```
 
+### Distorting an image
+
+Given an image path, this image will be the basis for distortion. The distortion will be from mimimum distortion of 10% to a maximum distortion of 40%. This number is identified in randomly.
+
+A `patch` parameter can be defined to focus on an area in an image. This will "crop" the image based on the input patch. This patch should be a rectangle for a proper distortion to take place.
+
+If `output_path` is not defined, the application will create an application window with the modified image.
+
+```python
+from gyakujinton import skew_image
+skew_image(
+    image_path="/path/to/file.filetype",
+    output_path="/path/to/output-file.filetype",  #optional
+    patch=[[INT, INT], ..., [INT, INT]],  # points on a 2D plane
+)
+```
+
+> Note: The window that will be created will not consider alpha values. As such, to see transparency it is recommended to save the file in PNG format.
+
 ## Command-line Interface
 
 The application also allows executions through the CLI.
@@ -52,7 +71,7 @@ We can also define an output path by adding the argument `-o` or `--output_path`
 gyakujinton draw_on_image /path/to/file.filetype --points 100,100 200,100 200,200 100,200 --output_path /path/to/output-file.filetype
 ```
 
-### Skewing the image (CLI)
+### Distorting an image (CLI)
 
 A proof-of-concept is created within the application to distort the skew the input image.
 
@@ -85,6 +104,14 @@ gyakujinton draw_on_image sample/samantha-gades-unsplash.jpg --points 100,100 10
 ```
 
 ![Modified Image 2](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/output-2.jpg)
+
+We can also test out the created function for image distortion.
+
+```bash
+gyakujinton distort sample/samantha-gades-unsplash.jpg --patch 10,10 10,400 400,400 400,10 -o output.distort.jpg
+```
+
+![Modified Image 3](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/output.distort.jpg)
 
 ## Name Inspiration
 
