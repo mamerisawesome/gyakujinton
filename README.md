@@ -119,7 +119,7 @@ We can also test out the created function for image distortion.
 gyakujinton distort sample/samantha-gades-unsplash.jpg --patch 10,10 10,400 400,400 400,10 -o output.distort.jpg
 ```
 
-![Modified Image 3](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/distort\ runs/distort-run-1.png)
+![Modified Image 3](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/distort%20runs/distort-run-1.png)
 
 ## Name Inspiration
 
