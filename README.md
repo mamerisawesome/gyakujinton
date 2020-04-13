@@ -7,6 +7,14 @@
 
 OpenCV wrapper to handle shapes and images.
 
+## Installation
+
+Just execute the command below and do the jutsus below!
+
+```bash
+pip install gyakujinton
+```
+
 ## Pre-requisites
 
 * Python 3.6.1 or higher
@@ -111,7 +119,7 @@ We can also test out the created function for image distortion.
 gyakujinton distort sample/samantha-gades-unsplash.jpg --patch 10,10 10,400 400,400 400,10 -o output.distort.jpg
 ```
 
-![Modified Image 3](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/output.distort.png)
+![Modified Image 3](https://raw.githubusercontent.com/mamerisawesome/gyakujinton/master/sample/distort\ runs/distort-run-1.png)
 
 ## Name Inspiration
 
