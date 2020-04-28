@@ -100,3 +100,53 @@ def skew_image(image_path, output_path=None, patch=None):
     screen.show()
 
     return output
+
+
+def batch_skew(
+    batch_dir,
+    output_dir,
+    compressed_path=None
+):
+    import os
+
+    if not batch_dir:
+        raise FileNotFoundError(
+            "The directory `{}` does not exist".format(batch_dir)
+        )
+
+    images = os.listdir(batch_dir)
+
+    original_images = []
+    warped_images = []
+    warped_dataset = []
+
+    for img in images:
+        out = skew_image(
+            image_path="{}/{}".format(batch_dir, img),
+            output_path="{}/{}.png".format(output_dir, img.split(".")[0])
+        )
+
+        warped = out["warped"]["corners"]
+        warp_coords = []
+
+        for point in range(0, len(warped)):
+            warp_coords += [warped[point][0]] + [warped[point][1]]
+
+        warped_dataset += [warp_coords]
+
+        original_images += [out["original"]["image"]]
+        warped_images += [out["warped"]["image"]]
+
+    if compressed_path:
+        np.savez(
+            compressed_path,
+            original=original_images,
+            warped=warped_images,
+            offsets=warped_dataset
+        )
+
+    return {
+        "original": original_images,
+        "warped": warped_images,
+        "offsets": warped_dataset,
+    }

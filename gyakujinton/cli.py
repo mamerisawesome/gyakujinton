@@ -6,6 +6,7 @@ def cli():
     commands = {
         "draw_on_image": shape_on_image,
         "distort": skew_image,
+        "batch_distort": batch_skew,
     }
 
     options = {
@@ -111,6 +112,42 @@ def skew_image(parent_parser, arguments):
         image_path=args.image_path,
         output_path=args.output_path,
         patch=patch
+    )
+
+    return 0
+
+
+def batch_skew(parent_parser, arguments):
+    from .functions.skew import batch_skew
+
+    parser = argparse.ArgumentParser(
+        prog="batch_distort",
+        parents=[parent_parser]
+    )
+
+    parser.add_argument(
+        "batch_dir",
+        help="file path of images for batch procssesing"
+    )
+
+    parser.add_argument(
+        "-o",
+        "--output_dir",
+        required=True,
+        help="output directory of distorted images"
+    )
+
+    parser.add_argument(
+        "-c",
+        "--compressed_path",
+        help="path of the compressed file to be generated"
+    )
+
+    args = parser.parse_args(arguments)
+    batch_skew(
+        batch_dir=args.batch_dir,
+        output_dir=args.output_dir,
+        compressed_path=args.compressed_path
     )
 
     return 0
