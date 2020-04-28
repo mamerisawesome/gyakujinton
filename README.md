@@ -84,7 +84,7 @@ gyakujinton draw_on_image /path/to/file.filetype --points 100,100 200,100 200,20
 A proof-of-concept is created within the application to distort the skew the input image.
 
 ```bash
-gyakujinton distory /path/to/file.filetype --patch 10,10 10,400 400,400 400,10
+gyakujinton distort /path/to/file.filetype --patch 10,10 10,400 400,400 400,10
 ```
 
 Similar to previous functions, an output path can be set to write the image into a file.
