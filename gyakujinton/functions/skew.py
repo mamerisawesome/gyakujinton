@@ -1,86 +1,6 @@
-import cv2
 import numpy as np
-from .Window import Window
-from .Shape import Shape
-
-
-def generate_superimposition():
-    window = Window(width=400, height=400)
-
-    square = Shape([
-        [0, 0],
-        [0, 100],
-        [100, 100],
-        [100, 0],
-    ])
-    window.register(square, rgb=(20, 100, 20))
-
-    reflected_square = Shape([
-        [50, 50],
-        [50, 150],
-        [150, 150],
-        [150, 50],
-    ])
-    window.register(reflected_square, rgb=(255, 100, 100))
-
-    return window.show()
-
-
-def draw_on_image(image_path, points, output_path=None, color=(20, 100, 20)):
-    from pathlib import Path
-
-    if not Path(image_path).is_file():
-        raise FileNotFoundError(
-            "The path `{}` is not valid".format(image_path)
-        )
-
-    window = Window(image_path=image_path)
-    square = Shape(points)
-    window.register(square, rgb=color)
-
-    if output_path:
-        window.save(output_path)
-        return
-
-    return window.show()
-
-
-def rotate_image(
-    image_path,
-    output_path=None,
-    angle=40,
-    scale=1.0,
-    patch=None
-):
-    image = Window(image_path=image_path)
-    (height, width, _) = image.window.shape
-
-    if patch is None:
-        patch = [
-            [0, 0],
-            [0, height],
-            [height, width],
-            [width, 0],
-        ]
-
-    center = (
-        (patch[0][0] + patch[2][0]) / 2,
-        (patch[0][1] + patch[2][1]) / 2,
-    )
-
-    matrix = cv2.getRotationMatrix2D(center, angle, scale)
-    image.window = cv2.warpAffine(
-        image.window,
-        matrix,
-        image.window.shape[1::-1],
-        flags=cv2.INTER_LINEAR
-    )
-
-    if output_path:
-        image.save(output_path)
-        return
-
-    return image.show()
+import cv2
+from gyakujinton.Window import Window
 
 
 def skew_image(image_path, output_path=None, patch=None):
@@ -95,6 +15,7 @@ def skew_image(image_path, output_path=None, patch=None):
         ]
 
     (height, width, _) = image.window.shape
+    original_image = image.window[:]
 
     if patch is None:
         patch = [
@@ -161,9 +82,21 @@ def skew_image(image_path, output_path=None, patch=None):
                 alpha_channel[d][p] = 0
 
     screen.window = cv2.merge((b_channel, g_channel, r_channel, alpha_channel))
+    output = {
+        "original": {
+            "corners": patch.tolist(),
+            "image": original_image,
+        },
+        "warped": {
+            "corners": skew_coords.tolist(),
+            "image": image.window,
+        },
+    }
 
     if output_path:
         screen.save(output_path)
-        return
+        return output
 
     screen.show()
+
+    return output

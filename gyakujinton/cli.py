@@ -30,7 +30,7 @@ def cli():
 
 
 def shape_on_image(parent_parser, arguments):
-    from .main import draw_on_image
+    from .functions.draw import draw_on_image
 
     parser = argparse.ArgumentParser(
         prog="draw_on_image",
@@ -70,7 +70,7 @@ def shape_on_image(parent_parser, arguments):
 
 
 def skew_image(parent_parser, arguments):
-    from .main import skew_image
+    from .functions.skew import skew_image
 
     parser = argparse.ArgumentParser(
         prog="distort",
